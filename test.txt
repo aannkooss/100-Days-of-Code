@@ -1,1 +1,16 @@
 this is a test
+
+
+To write on pyCharm and update on git:
+- write code
+- right click on file name >> git >> push
+or
+- on left side, click the second icon (-o-) or alt+0
+- highlight files
+- commit and push at the bottom
+
+
+To receive changes from Git:
+- ctrl T and merge incoming
+or
+- right click on file name >> git >> pull
