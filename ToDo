@@ -1,3 +1,9 @@
 Every time you save work or edit anything, dont forget to push code from pc or laptop to github and then dont forget to pull from the branch
 
 First thing should be to pull from github, and last thing should be to push to github
+
+To push ->
+ -- Click the -o- icon thing and highlight the changed files and then "commit and push"
+
+ To pull ->
+  -- Click "Git" in the toolbar and then "pull"
