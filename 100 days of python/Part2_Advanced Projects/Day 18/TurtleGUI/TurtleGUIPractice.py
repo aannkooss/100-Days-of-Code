@@ -1,8 +1,10 @@
+#Ankush Joshi
+#Turtle GUI Practice - various functions and methods
+
 import turtle as t
 import random
 colors = ["IndianRed", "DeepSkyBlue", "CornFlowerBlue", "LightSeaGreen", "wheat", "SeaGreen", "SlateGray"]
 directionAngle = [1, 2, 3, 4]
-
 
 def drawDashedLine(object):
     #function to draw a dashed line
