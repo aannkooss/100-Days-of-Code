@@ -1,29 +1,11 @@
-from turtle import *
+import turtle as t
 import random
 colors = ["IndianRed", "DeepSkyBlue", "CornFlowerBlue", "LightSeaGreen", "wheat", "SeaGreen", "SlateGray"]
-direction = ["right", "left"]
-directionAngle = [1, 2, 3] #fix this
-
-turtleObject = Turtle()
-screen = Screen()
-turtleObject.shape("turtle")
-turtleObject.color("green")
-turtleObject.pensize(7)
-turtleObject.speed(3)
-
-def randomWalk(object):
-    #function to create a random walk pattern
-    for i in range(100):
-        object.forward(20)
-        angle = 90*int(random.randint(directionAngle))
-        if random.choice(direction) == "left":
-            object.left(angle)
-        else:
-            object.right(angle)
-        object.pencolor(random.choice(colors))
+directionAngle = [1, 2, 3, 4]
 
 
 def drawDashedLine(object):
+    #function to draw a dashed line
     for i in range(25):
        object.forward(5)
        object.penup()
@@ -31,6 +13,7 @@ def drawDashedLine(object):
        object.pendown()
 
 def drawShape(object):
+    #function to draw shapes - starting from a triangle and increasing in sides
     sides = 3
     while sides <= 11:
         for i in range(sides):
@@ -39,6 +22,29 @@ def drawShape(object):
         sides+=1
         object.pencolor(random.choice(colors))
 
-#drawShape(turtleObject)
+def randomWalk(object):
+    #function to create a random walk pattern
+    for i in range(200):
+        heading = 90*random.choice(directionAngle)
+        object.forward(30)
+        object.setheading(heading)
+        object.pencolor(generateRandomRGB())
+
+def generateRandomRGB():
+    r = random.randint(0, 255)
+    g = random.randint(0, 255)
+    b = random.randint(0, 255)
+    randomColor = (r,g,b)
+
+    return randomColor
+
+t.colormode(255)
+turtleObject = t.Turtle()
+screen = t.Screen()
+turtleObject.shape("turtle")
+turtleColor = turtleObject.color(generateRandomRGB())
+turtleObject.pensize(7)
+turtleObject.speed(7)
+
 randomWalk(turtleObject)
 screen.exitonclick()
