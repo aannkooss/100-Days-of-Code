@@ -1,5 +1,5 @@
 import random
 
-x = random.rand(0,4)
+x = random.randint(0,4)
 
 print(x)
