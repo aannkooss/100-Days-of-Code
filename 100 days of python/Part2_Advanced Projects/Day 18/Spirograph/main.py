@@ -8,7 +8,7 @@ def generateRandomRGB():
     randomColor = (r,g,b)
     return randomColor
 
-def spinograph(object):
+def spirograph(object):
     for i in range(100):
         object.circle(100)
         object.right(4)
@@ -22,5 +22,5 @@ turtleObject.shape("turtle")
 screen = Screen()
 turtleObject.speed("fastest")
 
-spinograph(turtleObject)
+spirograph(turtleObject)
 screen.exitonclick()
