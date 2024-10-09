@@ -1,6 +1,6 @@
 #Ankush Joshi
 #October 6, 2024
-#Day 18/100 - Hirst Painting
+#Day 18/100 - Hirst Painting Project
 
 from turtle import *
 import random
