@@ -1,3 +1,5 @@
+#Ankush Joshi
+#Food class that resets food to a random position
 from turtle import Turtle
 import random
 

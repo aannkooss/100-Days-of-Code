@@ -1,3 +1,6 @@
+#Ankush Joshi
+#Snake class handles everything for snake movement and behavior
+
 from turtle import Turtle
 
 STARTING_POSITIONS = [(0,0), (-20,0), (-40,0)]

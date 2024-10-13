@@ -2,7 +2,7 @@
 #October 13, 2024
 #Day 20/21 - Snake Game
 
-# --------THINGS TO TWEAK
+# -------- THINGS TO TWEAK/ADD
 # -------- add a menu so the user can choose to start
 # -------- a pause functionality
 # -------- store high score and display (scope will be within the game session)
@@ -32,6 +32,13 @@ screen.onkey(snake.down, "Down")
 screen.onkey(snake.left, "Left")
 screen.onkey(snake.right, "Right")
 
+#screen.onkey(snake.pause, "Space")
+def disableInput():
+    screen.onkey(None, "Up")
+    screen.onkey(None, "Down")
+    screen.onkey(None, "Left")
+    screen.onkey(None, "Right")
+
 def game():
     snake.move()
     screen.update()
@@ -46,9 +53,11 @@ def game():
             pass
         elif snake.head.distance(segment) < 10:
             score.gameOver()
+            disableInput()
 
     if snake.head.xcor() > 290 or snake.head.xcor() < -290 or snake.head.ycor() > 290 or snake.head.ycor() < -290:
         score.gameOver()
+        disableInput()
     else:
         screen.ontimer(game,100)
 

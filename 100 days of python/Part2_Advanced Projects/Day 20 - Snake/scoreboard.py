@@ -1,3 +1,6 @@
+#Ankush Joshi
+#Scoreboard class handles everything  to do with establishing and changing the score
+
 from turtle import Turtle
 ALIGNMENT = "center"
 FONT = ("Courier", 24, "normal")
