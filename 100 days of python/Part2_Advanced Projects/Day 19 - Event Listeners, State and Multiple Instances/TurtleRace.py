@@ -3,32 +3,21 @@
 #Day 19 - Turtle Race
 import random
 from turtle import *
-from venv import create
 
-
+raceOn = False
 screen = Screen()
 screen.setup(500, 400) #500x400 (w by h) size
-userChoice = screen.textinput(title="Make your bet", prompt="Which turtle will win the race? Enter a color: ")
-
-redTurtle = Turtle()
-redTurtle.color("Indian Red")
-
-orangeTurtle = Turtle()
-orangeTurtle.color("Orange")
-
-pinkTurtle = Turtle()
-pinkTurtle.color("Pink")
-
-greenTurtle = Turtle()
-greenTurtle.color("Dark Green")
-
-blueTurtle = Turtle()
-blueTurtle.color("blue")
-
-purpleTurtle = Turtle()
-purpleTurtle.color("purple")
-
-turtles = [redTurtle, orangeTurtle, pinkTurtle, greenTurtle, blueTurtle, purpleTurtle]
+choices = ["indian red", "orange", "pink", "dark green", "blue", "purple"]
+userChoice = screen.textinput(title="Make your bet", prompt="Which turtle will win the race? Enter a color: "
+                                                            "(Indian Red, Orange, Pink, Dark Green, Blue, Purple)")
+while userChoice not in choices:
+    userChoice = screen.textinput(title="Make your bet", prompt="Please type it as you see it (Indian Red, Orange, "
+                                                                "Pink, Dark Green, Blue, Purple)").lower()
+turtles = []
+for color in choices:
+    turtle = Turtle()
+    turtle.color(color)
+    turtles.append(turtle)
 
 def createTurtle():
     for turtle in turtles:
@@ -38,7 +27,6 @@ def positionTurtles():
     createTurtle()
     positionFactor = 50
     yValue = -150
-    turtleSpeed = 0
 
     for turtle in turtles: #for loop to position turtles
         turtle.penup()
@@ -46,13 +34,22 @@ def positionTurtles():
         turtle.goto(-230, yValue)
         turtle.setheading(0)
 
-    for turtle in turtles:
-        turtleSpeed = random.randint(1,10)
-
+if userChoice:
+    raceOn = True
 
 positionTurtles()
 
-#set condition for winning bet and printing ot terminal
+while raceOn:
+    for turtle in turtles:
+        if turtle.xcor() > 230:
+            raceOn = False
+            winner = turtle.pencolor()
+            if winner == userChoice:
+                print(f"You win! The {winner} turtle is the winner!")
+            else:
+                print(f"You lost! The {winner} turtle is the winner")
 
+        randomDistance = random.randint(0,10)
+        turtle.forward(randomDistance)
 
 screen.exitonclick()
