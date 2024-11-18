@@ -11,10 +11,13 @@
 # -------- game modes -> hard (faster), expert (fastest or snake gets faster with every bite)
 # -------- color settings for snake
 
+# ---------------------------------------------------------------------------------------------------
+
 from turtle import Screen
 from snake import Snake
 from food import Food
 from scoreboard import Scoreboard
+#from helpers import Helpers
 
 screen = Screen()
 screen.setup(600,600)
@@ -27,12 +30,10 @@ food = Food()
 score = Scoreboard()
 
 screen.listen()
-screen.onkey(snake.up, "Up")
-screen.onkey(snake.down, "Down")
-screen.onkey(snake.left, "Left")
-screen.onkey(snake.right, "Right")
-
-#screen.onkey(snake.pause, "Space")
+screen.onkey(snake.up, "w")
+screen.onkey(snake.down, "s")
+screen.onkey(snake.left, "a")
+screen.onkey(snake.right, "d")
 def disableInput():
     screen.onkey(None, "Up")
     screen.onkey(None, "Down")
@@ -48,10 +49,8 @@ def game():
         score.increaseScore()
         snake.extend()
 
-    for segment in snake.segments:
-        if segment == snake.head:
-            pass
-        elif snake.head.distance(segment) < 10:
+    for segment in snake.segments[1:]:
+        if snake.head.distance(segment) < 10:
             score.gameOver()
             disableInput()
 
@@ -63,3 +62,71 @@ def game():
 
 game()
 screen.exitonclick()
+
+
+# helpers = Helpers(screen)
+#
+# gameIsRunning = False
+# highScore = 0
+
+
+# #screen.onkey(snake.pause, "Space")
+#
+# def startGame():
+#     global gameIsRunning
+#     gameIsRunning = True
+#     helpers.menu_turtle.clear()
+#     screen.bgcolor("black")
+#     gameLoop()
+#
+# def resetGame():
+#     global gameIsRunning, highScore
+#     gameIsRunning = True
+#     snake.reset()
+#     score.reset()
+#     helpers.menu_turtle.clear()
+#     gameLoop()
+#
+# def gameLoop():
+#     global highScore
+#
+#     if gameIsRunning and not helpers.paused:
+#         snake.move()
+#         screen.update()
+#
+#         if snake.head.distance(food) < 15:
+#             food.newFood()
+#             score.increaseScore()
+#             snake.extend()
+#
+#             for segment in snake.segments:
+#                 if segment == snake.head:
+#                     pass
+#                 elif snake.head.distance(segment) < 10:
+#                     highScore = helpers.highScore(score.score, highScore)
+#                     helpers.gameOver(score.score, highScore)
+#                     screen.onkey(resetGame, "space")
+#                     return
+#
+#             if snake.head.xcor() > 290 or snake.head.xcor() < -290 or snake.head.ycor > 290 or snake.head.ycor < -290:
+#                 highScore = helpers.highScore(score.score, highScore)
+#                 helpers.gameOver(score.score, highScore)
+#                 screen.onkey(resetGame, "space")
+#                 return
+#
+#             screen.ontimer(gameLoop(), 100)
+#
+# helpers.startMenu()
+# screen.listen()
+# screen.onkey(startGame, "space")
+#
+# screen.onkey(lambda: helpers.pause(snake, food, score), "p")
+#
+# screen.exitonclick()
+
+# -----------------------------------------------------------------------------
+
+
+
+
+

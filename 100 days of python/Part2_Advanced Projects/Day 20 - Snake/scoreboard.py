@@ -20,12 +20,9 @@ class Scoreboard(Turtle):
     def gameOver(self):
         self.goto(0,0)
         self.write("GAME OVER", align="center", font=FONT)
-        #display game score and high score
-
 
     def increaseScore(self):
         self.score+=1
         self.clear()
         self.updateScore()
 
-        #implement a high score system as well
