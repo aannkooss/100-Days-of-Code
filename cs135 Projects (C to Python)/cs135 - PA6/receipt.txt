@@ -1,0 +1,9 @@
+*****Your SANDWICH Order******
+6 inches HOT sandwich: $8.49
+CHIPS:  $1.99
+MEDIUM Drink: $1.99
+______________________________
+SUBTOTAL: $12.47
+plus 8.27% tax and 12% tip
+==============================
+The TOTAL is $15.00
