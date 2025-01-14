@@ -21,12 +21,18 @@ while len(correctGuesses) < 50:
 
     # Check if guess is among 50 states
     if answerState == "Exit":
-        missingStates = []
-        for state in statesArray:
-            if state not in correctGuesses:
-                missingStates.append(state)
+        # missingStates = []
+        # for state in statesArray:
+        #     if state not in correctGuesses:
+        #         missingStates.append(state)
+
+        # Shortening this code snippet using List Comprehension
+        missingStates = [state for state in statesArray if state not in correctGuesses]
+
         newData = pandas.DataFrame(missingStates)
         newData.to_csv("StatesToLearn.csv")
+
+
         break
     if answerState in statesArray and answerState not in correctGuesses:
         correctGuesses.append(answerState)
