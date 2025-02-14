@@ -3,7 +3,7 @@
 #PA7 - Python
 
 def main():
-
+pass
 
 def read(file, orderSize):
     temp = []
