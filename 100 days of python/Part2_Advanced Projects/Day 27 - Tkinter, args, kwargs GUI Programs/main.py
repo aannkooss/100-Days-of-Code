@@ -1,19 +1,21 @@
-import tkinter
+from tkinter import *
 
-window = tkinter.Tk()
+window = Tk()
 window.title("My First GUI Program")
 window.minsize(width=500,height=300)
 
 #Label
-myLabel = tkinter.Label(text="I am a label", font=("Arial", 24))
-myLabel.pack() #this displays the label to the screen - handles size and position
+myLabel = Label(text="I am a label", font=("Arial", 24, "bold"))
+myLabel.pack(side="left") #this displays the label to the screen - handles size and position
 
+myLabel["text"] = "New Text"
+myLabel.config(text="New Text")
+
+
+def buttonClicked():
+    print("I got clicked")
+
+button = Button(text="Click Me", command=buttonClicked )
+button.pack()
 
 window.mainloop() #this keeps the window open
-
-#def add(n1, n2):
-#   return n1+n2  #This limits the function to only taking the parameeters inside the function
-
-#def add(*args):
-# for n in args: #loops through arguments (stored in a tuple)
-#   print(n)    #this allows for however many parameters
