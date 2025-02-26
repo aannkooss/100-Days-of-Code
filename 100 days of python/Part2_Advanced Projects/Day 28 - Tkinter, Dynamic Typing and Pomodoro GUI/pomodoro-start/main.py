@@ -54,6 +54,4 @@ reset.grid(row=3,column=3,)
 check = Label(text="✔", fg=GREEN, bg=YELLOW, highlightbackground=YELLOW)
 check.grid(row=4,column=2)
 
-
-
 window.mainloop()
