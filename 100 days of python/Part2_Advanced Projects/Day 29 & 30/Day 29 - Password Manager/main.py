@@ -1,14 +1,13 @@
 # Ankush Joshi
 # February 26, 2025
 # Day 29/100 - Password Manager
-
+from encodings import search_function
 # Importing Libraries
 from tkinter import *
 from tkinter import messagebox
 from random import choice, randint, shuffle
 import pyperclip
-
-# ---------------------------- PASSWORD GENERATOR ------------------------------- #
+import json
 
 def generatePassword():
     letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j',
@@ -35,31 +34,52 @@ def generatePassword():
     # Copies password to clipboard for easy access
     pyperclip.copy(password)
 
-# ---------------------------- SAVE PASSWORD ------------------------------- #
 def save():
     website = websiteInput.get()
     email = emailInput.get()
     password = passwordInput.get()
+    newData = {website: {
+        "Email": email,
+        "Password": password
+    }}
 
     # Case if website or password field are left empty
     if website == "" or password == "":
         messagebox.showerror(title="Error", message="You've left some fields blank. Please"
                                                           " fill them out before saving")
         return
-
-    # Creating a confirmation window for saving login details
-    isOkay = messagebox.askokcancel(title=website, message=f"These are the details entered:\n"
-                                                  f"Email: {email} \nPassword: {password}\n"
-                                                  f"Save these details?")
-
-    # Saves data if user confirms
-    if isOkay:
-        with open("data.txt", "a") as dataFile:
-            dataFile.write(f"{website} | {email} | {password}\n")
+    else:
+        try: #executes this chunk first
+            with open("data.json", "r") as dataFile:
+                data = json.load(dataFile) # reads data
+                data.update(newData)
+        except FileNotFoundError: # if file is not found, create a new one
+            with open("data.json", "w") as dataFile:
+                json.dump(newData, dataFile, indent=4)
+        else: # if it does work, then update the data
+            data.update(newData)
+            with open("data.json", "w") as dataFile:
+                json.dump(data, dataFile, indent=4)
+        finally: # clear inputs
             websiteInput.delete(0, END)
             passwordInput.delete(0, END)
 
-# ---------------------------- UI SETUP ------------------------------- #
+# Search
+
+def search():
+    website = websiteInput.get()
+    try:
+        with open("data.json") as dataFile:
+            data = json.load(dataFile)
+    except FileNotFoundError:
+        messagebox.showinfo(title="Error!", message="Data File doesnt exist!")
+    else:
+        if website in data:
+            email = data[website]["Email"]
+            password = data[website]["Password"]
+            messagebox.showinfo(title=website, message=f"Email: {email}\nPassword: {password}")
+        else:
+            messagebox.showerror(title="Error!", message="Login details not found!")
 
 # Creating window
 window = Tk()
@@ -82,8 +102,8 @@ passwordLabel = Label(text="Password:")
 passwordLabel.grid(row=3,column=0)
 
 # Inputs
-websiteInput = Entry(width=35)
-websiteInput.grid(row=1,column=1, columnspan=2)
+websiteInput = Entry(width=18)
+websiteInput.grid(row=1,column=1, columnspan=1)
 emailInput = Entry(width=35)
 emailInput.grid(row=2,column=1, columnspan=2)
 emailInput.insert(0,  "joshiankush6@gmail.com")
@@ -95,5 +115,7 @@ passwordButton = Button(text="Generate Password", command=generatePassword)
 passwordButton.grid(row=3, column=2)
 addButton = Button(text="add", command=save, width=33)
 addButton.grid(row=4,column=1, columnspan=2)
+searchButton = Button(text="Search", command=search, width=13)
+searchButton.grid(row=1, column=2)
 
 window.mainloop()
