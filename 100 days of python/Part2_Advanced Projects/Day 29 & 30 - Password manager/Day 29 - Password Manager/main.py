@@ -2,12 +2,15 @@
 # February 26, 2025
 # Day 29/100 - Password Manager
 from encodings import search_function
+
 # Importing Libraries
 from tkinter import *
 from tkinter import messagebox
 from random import choice, randint, shuffle
 import pyperclip
 import json
+
+# TO ADD: Add a verification mode to protect user security
 
 def generatePassword():
     letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j',

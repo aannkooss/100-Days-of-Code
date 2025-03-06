@@ -15,7 +15,7 @@ finally: # will execute no matter what happens
     file.close()
     print("file closed")
 
-    raise: KeyError # allows us to raise our own exceptions
+    raise KeyError # allows us to raise our own exceptions
 
 
 # ## Example
